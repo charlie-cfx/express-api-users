@@ -54,7 +54,7 @@ const updateUser = (req, res) => {
             if (result.affectedRows === 0) {
                 res.status(404).send("Not Found");
             } else {
-                res.sendStatus(204);
+                res.sendStatus(200);
             }
         })
         .catch((err) => {
