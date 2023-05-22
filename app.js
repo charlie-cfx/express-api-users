@@ -4,7 +4,7 @@ const express = require("express");
 
 const app = express();
 
-const { validateMovie } = require("./validators.js");
+const { validateMovie, validateUser } = require("./validators.js");
 
 const port = process.env.APP_PORT ?? 5000;
 
@@ -27,8 +27,8 @@ const userHandlers = require("./userHandlers");
 
 app.get("/api/users", userHandlers.getUsers);
 app.get("/api/users/:id", userHandlers.getUserById);
-app.post("/api/users", userHandlers.postUser);
-app.put("/api/users/:id", userHandlers.updateUser);
+app.post("/api/users", validateUser, userHandlers.postUser);
+app.put("/api/users/:id", validateUser, userHandlers.updateUser);
 
 app.listen(port, (err) => {
     if (err) {
